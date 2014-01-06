@@ -7,10 +7,11 @@ object ScoreFormatter {
 
   def score(game: Game) =
     game match {
-      case WonGame(w) => "winner: %s".format(w.name)
-      case AdvantageGame(_, _, a) => "advantage: %s".format(a.name)
-      case DeuceGame(_, _) => "deuce"
+      case NewGame(_, _) => formatSimpleScores(0, 0)
       case SimpleGame(_, _, s1, s2) => formatSimpleScores(s1, s2)
+      case DeuceGame(_, _) => "deuce"
+      case AdvantageGame(_, _, a) => "advantage: %s".format(a.name)
+      case WonGame(w) => "winner: %s".format(w.name)
     }
 
   private def formatSimpleScores(s1: Int, s2: Int) = {
